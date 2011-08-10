@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Solver()
+comment0.text=\n\ This\ is\ the\ constructor\ for\ a\ Sudoku\ Solver\n
+comment1.params=
+comment1.target=void\ generateAllSolutions()
+comment1.text=\n\ Generates\ all\ possible\ valid\ sudoku\ solutions\ and\ stores\ them\ in\ the\ Solver\n
+comment2.params=x\ y\ n
+comment2.target=void\ removeInvalid(int,\ int,\ int)
+comment2.text=\n\ Removes\ all\ boards\ that\ contain\ a\ certain\ number\ at\ a\ certain\ position.\n\ @param\ x\ The\ column\ /\ x-coordinate\n\ @param\ y\ The\ row\ /\ y-coordinate\n\ @param\ n\ The\ number\ to\ check\n
+numComments=3
