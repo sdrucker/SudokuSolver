@@ -5,6 +5,11 @@ public class Board
 
     public Board(){
         board = new Slot[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = new Slot();
+            }
+        }
     }
 
     public Board(Slot[][] array)
@@ -240,6 +245,10 @@ public class Board
         }
         return square;
     }
+    
+    public Slot get(int c, int r) {
+        return getSlot(c,r);
+    }
 
     public Slot[] getRow(int r) {
         return returnRow(r);
@@ -259,14 +268,12 @@ public class Board
 
     private int getIStarterForSquares(int num)
     {
-
         if (num == 0|| num == 3|| num ==6)
             return 0;
         if (num == 1|| num == 4|| num ==7)
             return 3;
         else
             return 6;
-
     }
 
     private int getJStarterForSquares(int num)

@@ -6,14 +6,47 @@ import java.util.Arrays;
  * @version 0.1
  */
 public class Solver {
-    
     private Board board;
     /**
      * This is the constructor for a Sudoku Solver
      */
     public Solver() {
         board = new Board();
-        solve();
+        //limit();
+        //solve();
+        //printFirstPossible();
+        for (int i = 1; i < 10; i++) {
+            Slot[] arr = board.getSquare(i);
+            System.out.print(i+": ");
+            for (Slot elem : arr) {
+                System.out.print(elem.value()+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Place limiters on the board based on input from this particular Sudoku puzzle.
+     */
+    public void limit() {
+        boolean exit = false;
+        SuperScanner input = new SuperScanner(System.in);
+        do {
+            System.out.print("\fEnter row: ");
+            int r = input.nextInt();
+            System.out.print("Enter col: ");
+            int c = input.nextInt();
+            System.out.print("Enter num: ");
+            int n = input.nextInt();
+            System.out.print("Are you sure everything you entered was correct? ");
+            if (input.confirm())
+                board.getSlot(c,r).set(n);
+            else
+                continue;
+            System.out.print("Do you have more values to enter? ");
+            if (!input.confirm())
+                exit = true;
+        } while (!exit);
     }
     
     /**
@@ -31,6 +64,18 @@ public class Solver {
         } while (!singlified());
     }
 
+    /**
+     * Prints the first possible board based on the current slots.
+     */
+    public void printFirstPossible() {
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                System.out.print(board.getSlot(c,r).first()+" ");
+            }
+            System.out.println();
+        }
+    }
+    
     /**
      * Checks whether all of the cells that can be evaluated by basic methods have been simplified as much as possible
      */

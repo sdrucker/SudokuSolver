@@ -58,6 +58,15 @@ public class Slot {
         else
             return -1;
     }
+
+    /**
+     * Regardless of whether this slot has a specific answer or not, this method will
+     * return the first possibility of what this slot might contain.
+     * @return The first of this slot's possible values
+     */
+    public int first() {
+        return possibilities.get(0);
+    }
     
     /**
      * Same as {@link #getAnswer() getAnswer()}
