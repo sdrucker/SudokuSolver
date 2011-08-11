@@ -1,11 +1,12 @@
+import java.util.Arrays;
 public class Board
 {
     private Slot[][] board;
-    
+
     public Board(){
-         board = new Slot[9][9];
+        board = new Slot[9][9];
     }
-    
+
     public Board(Slot[][] array)
     {
         board = array;
@@ -64,12 +65,12 @@ public class Board
         }
         return true;
     }
-    
+
     public Slot[][] returnBoard()
     {
         return board;
     }
-    
+
     /**
      * This method checks a box to see if a given number is present.
      * @param x The column / x-coordinate
@@ -106,19 +107,11 @@ public class Board
         return true;
     }
 
-    /*
-     * Sam - sometimes it's easier to follow condensed code, and often many lines are unnecessary.
-     * The first way I condensed this method was by eliminating the "==true" parts of the conditions.
-     * Saying if(a==true) is the same as saying if(a).  Next you said if (condition) return true else
-     * return false.  That can be condensed to simply return (condition), which will return true if
-     * the condition evaluates to true, and false otherwise.  As a general rule if you can condense your
-     * code without making it impossibly complicated to read, you should. 
-     */
     public boolean checkAll(int x, int y, int num)
     {
         return (checkRow(y,num) && checkColumn(x, num) && checkThreeSquare(x,y,num));
     }
-    
+
     public Slot[] returnRow(int y)
     {
         Slot[] row = new Slot[9];
@@ -129,28 +122,78 @@ public class Board
         return row;
     }
 
-    /*
-     * Sam - when you have a matrix mat[a][b] and you want all of the elements in a single a
-     * strip, you can just use mat[a] and it will return the array you want.  However, if you
-     * want all the elements in a single b strip, you need to iterate through the matrix like
-     * you did in the returnRow method.
-     */
     public Slot[] returnColumn(int x)
     {
-        return board[x];
+        Slot[] col = new Slot[9];
+        for (int i =0;i<9;i++)
+        {
+            col[i]=board[x][i];
+        }
+        return col;
     }
 
-    /*
-     * Comment this method - also use internal comments here on the logic of the if
-     * statements so it's easier to follow.  If you ever write a method that is intricate
-     * enough that you think that if you come back in a week you might not remember how it
-     * works or be able to debug it, you should use internal comments.  If you think
-     * you will still understand it because it's written clearly / is obvious,
-     * you don't necessarily need the internal notes, but you should still have JavaDoc.
+    public boolean checkRow(int y)
+    {
+        Slot [] checkArray = new Slot [9];
+        checkArray = returnRow(y);
+        int [] sortArray = new int [9];
+        for (int i = 0; i < 9; i++)
+        {
+            sortArray [i] = checkArray[i].value(); 
+        }
+        Arrays.sort(sortArray);
+        for (int i = 0; i < 9; i++)
+        {
+            if (sortArray[i] !=i)
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean checkCol(int x)
+    {
+        Slot [] checkArray = new Slot [9];
+        checkArray = returnColumn(x);
+        int [] sortArray = new int [9];
+        for (int i = 0; i < 9; i++)
+        {
+            sortArray [i] = checkArray[i].value(); 
+        }
+        Arrays.sort(sortArray);
+        for (int i = 0; i < 9; i++)
+        {
+            if (sortArray[i] !=i)
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean checkSquare(int squareNum)
+    {
+        Slot [] checkArray = new Slot [9];
+        checkArray = returnSquare(squareNum);
+        int [] sortArray = new int [9];
+        for (int i = 0; i < 9; i++)
+        {
+            sortArray [i] = checkArray[i].value(); 
+        }
+        Arrays.sort(sortArray);
+        for (int i = 0; i < 9; i++)
+        {
+            if (sortArray[i] !=i)
+            return false;
+        }
+        return true;
+    }
+    /**
+     * This method finds the box number 0-8.
+     * @param x The column / x-coordinate
+     * @param y The row / y-coordinate
+     * @return box num
      */
     public int getSquareNumber(int x, int y)
     {
-        
+
         if (x < 2 && y < 2)
             return 0;
         else if(y < 2 && x < 5)
@@ -170,41 +213,7 @@ public class Board
         else
             return 8;
     }
-    
-    /*
-     * Comment this method - not sure what it does.
-     * NOTE: If this is just a method that you use internally in one of your
-     * other methods but I'm not supposed to invoke it outside of this class,
-     * make it "private" instead of public and put it at the bottom of the class.
-     */
-    public int getIStarterForSquares(int num)
-    {
-        
-        if (num == 0|| num == 3|| num ==6)
-        return 0;
-        if (num == 1|| num == 4|| num ==7)
-        return 3;
-        else
-        return 6;
-        
-    }
-    
-    /*
-     * Comment this method - not sure what it does.
-     * NOTE: If this is just a method that you use internally in one of your
-     * other methods but I'm not supposed to invoke it outside of this class,
-     * make it "private" instead of public and put it at the bottom of the class.
-     */
-    public int getJStarterForSquares(int num)
-    {
-        if (num < 3)
-        return 0;
-        else if (num < 6)
-        return 3;
-        else 
-        return 6;
-    }
-    
+
     public Slot[] returnSquare(int squareNum)
     {
         int i = getIStarterForSquares(squareNum);
@@ -213,30 +222,60 @@ public class Board
         int jMax = j + 3;
         Slot[] square = new Slot[9];
         int count = 0;
-        for (; i < iMax; i ++)
+
+        for (; j < jMax; j++)
         {
-            for (; j < jMax; j++)
-            {
-                square[count]= board[i][j];
-                count++;
-            }
+            square[count]= board[i][j];
+            count++;
+        }
+        for (; j < jMax; j++)
+        {
+            square[count]= board[i+1][j];
+            count++;
+        }
+        for (; j < jMax; j++)
+        {
+            square[count]= board[i+2][j];
+            count++;
         }
         return square;
     }
-        
+
     public Slot[] getRow(int r) {
         return returnRow(r);
     }
-    
+
     public Slot[] getColumn(int c) {
         return returnColumn(c);
     }
-    
+
     public Slot[] getCol(int c) {
         return returnColumn(c);
     }
-    
+
     public Slot[] getSquare(int s) {
         return returnSquare(s);
+    }
+
+    private int getIStarterForSquares(int num)
+    {
+
+        if (num == 0|| num == 3|| num ==6)
+            return 0;
+        if (num == 1|| num == 4|| num ==7)
+            return 3;
+        else
+            return 6;
+
+    }
+
+    private int getJStarterForSquares(int num)
+    {
+        if (num < 3)
+            return 0;
+        else if (num < 6)
+            return 3;
+        else 
+            return 6;
     }
 }
