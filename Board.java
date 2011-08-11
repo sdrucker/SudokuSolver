@@ -1,11 +1,16 @@
 public class Board
 {
     private Slot[][] board;
-    
+
     public Board(){
-         board = new Slot[9][9];
+        board = new Slot[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = new Slot();
+            }
+        }
     }
-    
+
     public Board(Slot[][] array)
     {
         board = array;
@@ -64,12 +69,12 @@ public class Board
         }
         return true;
     }
-    
+
     public Slot[][] returnBoard()
     {
         return board;
     }
-    
+
     /**
      * This method checks a box to see if a given number is present.
      * @param x The column / x-coordinate
@@ -118,7 +123,7 @@ public class Board
     {
         return (checkRow(y,num) && checkColumn(x, num) && checkThreeSquare(x,y,num));
     }
-    
+
     public Slot[] returnRow(int y)
     {
         Slot[] row = new Slot[9];
@@ -150,7 +155,7 @@ public class Board
      */
     public int getSquareNumber(int x, int y)
     {
-        
+
         if (x < 2 && y < 2)
             return 0;
         else if(y < 2 && x < 5)
@@ -170,7 +175,7 @@ public class Board
         else
             return 8;
     }
-    
+
     /*
      * Comment this method - not sure what it does.
      * NOTE: If this is just a method that you use internally in one of your
@@ -179,16 +184,16 @@ public class Board
      */
     public int getIStarterForSquares(int num)
     {
-        
+
         if (num == 0|| num == 3|| num ==6)
-        return 0;
+            return 0;
         if (num == 1|| num == 4|| num ==7)
-        return 3;
+            return 3;
         else
-        return 6;
-        
+            return 6;
+
     }
-    
+
     /*
      * Comment this method - not sure what it does.
      * NOTE: If this is just a method that you use internally in one of your
@@ -198,13 +203,13 @@ public class Board
     public int getJStarterForSquares(int num)
     {
         if (num < 3)
-        return 0;
+            return 0;
         else if (num < 6)
-        return 3;
+            return 3;
         else 
-        return 6;
+            return 6;
     }
-    
+
     public Slot[] returnSquare(int squareNum)
     {
         int i = getIStarterForSquares(squareNum);
@@ -223,19 +228,23 @@ public class Board
         }
         return square;
     }
-        
+
+    public Slot get(int c, int r) {
+        return getSlot(c,r);
+    }
+
     public Slot[] getRow(int r) {
         return returnRow(r);
     }
-    
+
     public Slot[] getColumn(int c) {
         return returnColumn(c);
     }
-    
+
     public Slot[] getCol(int c) {
         return returnColumn(c);
     }
-    
+
     public Slot[] getSquare(int s) {
         return returnSquare(s);
     }

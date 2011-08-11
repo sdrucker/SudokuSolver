@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=source
+comment0.target=SuperScanner(java.io.InputStream)
+comment1.params=
+comment1.target=int\ nextInt()
+comment2.params=
+comment2.target=boolean\ confirm()
+comment3.params=
+comment3.target=java.lang.String\ nextLine()
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5
