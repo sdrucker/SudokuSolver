@@ -1,33 +1,34 @@
-
+import java.util.ArrayList;
 /**
- * Write a description of class Solver here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * This Solver class is supposed to solve Sudoku puzzles.
+ * @author Sam Drucker, Dani Dickstein
+ * @version 0.1
  */
-public class Solver
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
+public class Solver {
+    
+    private ArrayList<Board> boards;
     /**
-     * Constructor for objects of class Solver
+     * This is the constructor for a Sudoku Solver
      */
-    public Solver()
-    {
-        // initialise instance variables
-        x = 0;
+    public Solver() {
+        boards = new ArrayList<Board>();
+        generateAllSolutions();
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Generates all possible valid sudoku solutions and stores them in the Solver
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void generateAllSolutions() {
+        
+    }
+    
+    /**
+     * Removes all boards that contain a certain number at a certain position.
+     * @param x The column / x-coordinate
+     * @param y The row / y-coordinate
+     * @param n The number to check
+     */
+    public void removeInvalid(int x, int y, int n) {
+        
     }
 }

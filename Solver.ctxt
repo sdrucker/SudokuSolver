@@ -1,8 +1,11 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Solver()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Solver\r\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
-numComments=2
+comment0.text=\r\n\ This\ is\ the\ constructor\ for\ a\ Sudoku\ Solver\r\n
+comment1.params=
+comment1.target=void\ generateAllSolutions()
+comment1.text=\r\n\ Generates\ all\ possible\ valid\ sudoku\ solutions\ and\ stores\ them\ in\ the\ Solver\r\n
+comment2.params=x\ y\ n
+comment2.target=void\ removeInvalid(int,\ int,\ int)
+comment2.text=\r\n\ Removes\ all\ boards\ that\ contain\ a\ certain\ number\ at\ a\ certain\ position.\r\n\ @param\ x\ The\ column\ /\ x-coordinate\r\n\ @param\ y\ The\ row\ /\ y-coordinate\r\n\ @param\ n\ The\ number\ to\ check\r\n
+numComments=3

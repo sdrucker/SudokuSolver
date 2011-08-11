@@ -4,6 +4,7 @@ package.editor.width=560
 package.editor.x=427
 package.editor.y=174
 package.numDependencies=0
+<<<<<<< HEAD
 package.numTargets=2
 package.showExtends=true
 package.showUses=true
@@ -13,12 +14,25 @@ target1.editor.x=317
 target1.editor.y=-15
 target1.height=50
 target1.name=Board
+=======
+package.numTargets=1
+package.showExtends=true
+package.showUses=true
+project.charset=MacRoman
+target1.editor.height=679
+target1.editor.width=900
+target1.editor.x=70
+target1.editor.y=22
+target1.height=50
+target1.name=Solver
+>>>>>>> 64388b8ee90007f6b040648b7bbbe15cdb193e59
 target1.naviview.expanded=true
 target1.showInterface=false
 target1.type=ClassTarget
 target1.width=80
 target1.x=70
 target1.y=10
+<<<<<<< HEAD
 target2.height=50
 target2.name=Solver
 target2.showInterface=false
@@ -26,3 +40,5 @@ target2.type=ClassTarget
 target2.width=80
 target2.x=160
 target2.y=10
+=======
+>>>>>>> 64388b8ee90007f6b040648b7bbbe15cdb193e59
