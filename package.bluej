@@ -1,44 +1,36 @@
 #BlueJ package file
+dependency1.from=Solver
+dependency1.to=Board
+dependency1.type=UsesDependency
 package.editor.height=400
 package.editor.width=560
-package.editor.x=427
-package.editor.y=174
-package.numDependencies=0
-<<<<<<< HEAD
+package.editor.x=41
+package.editor.y=164
+package.numDependencies=1
 package.numTargets=2
 package.showExtends=true
 package.showUses=true
 target1.editor.height=690
 target1.editor.width=900
-target1.editor.x=317
-target1.editor.y=-15
+target1.editor.x=24
+target1.editor.y=148
 target1.height=50
 target1.name=Board
-=======
-package.numTargets=1
-package.showExtends=true
-package.showUses=true
-project.charset=MacRoman
-target1.editor.height=679
-target1.editor.width=900
-target1.editor.x=70
-target1.editor.y=22
-target1.height=50
-target1.name=Solver
->>>>>>> 64388b8ee90007f6b040648b7bbbe15cdb193e59
 target1.naviview.expanded=true
 target1.showInterface=false
 target1.type=ClassTarget
 target1.width=80
 target1.x=70
 target1.y=10
-<<<<<<< HEAD
+target2.editor.height=679
+target2.editor.width=900
+target2.editor.x=70
+target2.editor.y=27
 target2.height=50
 target2.name=Solver
+target2.naviview.expanded=true
 target2.showInterface=false
 target2.type=ClassTarget
 target2.width=80
-target2.x=160
-target2.y=10
-=======
->>>>>>> 64388b8ee90007f6b040648b7bbbe15cdb193e59
+target2.x=310
+target2.y=20
