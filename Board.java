@@ -1,26 +1,28 @@
-
 public class Board
 {
-    private int[][] board = new int[9][9];
-    public Board(){}
+    private Slot[][] board;
     
-    public Board(int [][] array)
+    public Board(){
+         board = new Slot[9][9];
+    }
+    
+    public Board(Slot[][] array)
     {
         board = array;
     }
 
-        /**
+    /**
      * This method returns the number in a spot.
      * @param x The column / x-coordinate
      * @param y The row / y-coordinate
-     * @return the number int the spot
+     * @return the slot object for the spot
      */
-    public int getNumberInSpot(int x, int y)
+    public Slot getSlot(int x, int y)
     {
         return board[x][y];
     }
     
-        /**
+    /**
      * This method sets the number in a spot.
      * @param x The column / x-coordinate
      * @param y The row / y-coordinate
@@ -28,8 +30,9 @@ public class Board
      */
     public void setNumberInSpot(int x, int y, int num)
     {
-        board[x][y] = num; //board[newX][newY];
+        board[x][y].set(num);
     }
+    
     /**
      * This method checks if a given value is in the row
      * @param y The row / y-coordinate
@@ -40,7 +43,7 @@ public class Board
     {
         for (int i = 0; i < 9; i++)
         {
-            if (board[i][y] == num)
+            if (board[i][y].value() == num)
                 return false;
         }
         return true;
@@ -56,15 +59,17 @@ public class Board
     {
         for (int i = 0; i < 9; i++)
         {
-            if (board[x][i] == num)
+            if (board[x][i].value() == num)
                 return false;
         }
         return true;
     }
-    public int [][] returnBoard()
+    
+    public Slot[][] returnBoard()
     {
         return board;
     }
+    
     /**
      * This method checks a box to see if a given number is present.
      * @param x The column / x-coordinate
@@ -88,26 +93,22 @@ public class Board
         else
             j = 6;
         iTop = i + 3;
-        jTop = j + 3;	
+        jTop = j + 3;   
         for (;i < iTop;i++)
         {
             for (;j< jTop; j++)
             {
-                if (board[i][j] == num)
+                if (board[i][j].value() == num)
                     return false;
             }
         }
 
         return true;
     }
-
+
+
     public boolean checkAll(int x, int y, int num)
     {
-        if((checkRow(y,num)==true) && (checkColom(x, num)==true)&& (checkThreeSquare(x,y,num)==true))
-        {
-            return true;
-        }
-        else
-            return false;
+        return (checkRow(y,num) && checkColom(x, num) && checkThreeSquare(x,y,num));
     }
 }
