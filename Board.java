@@ -1,10 +1,12 @@
-
 public class Board
 {
-    private int[][] board = new int[9][9];
-    public Board(){}
-
-    public Board(int [][] array)
+    private Slot[][] board;
+    
+    public Board(){
+         board = new Slot[9][9];
+    }
+    
+    public Board(Slot[][] array)
     {
         board = array;
     }
@@ -13,9 +15,9 @@ public class Board
      * This method returns the number in a spot.
      * @param x The column / x-coordinate
      * @param y The row / y-coordinate
-     * @return the number int the spot
+     * @return the slot object for the spot
      */
-    public int getNumberInSpot(int x, int y)
+    public Slot getSlot(int x, int y)
     {
         return board[x][y];
     }
@@ -28,9 +30,9 @@ public class Board
      */
     public void setNumberInSpot(int x, int y, int num)
     {
-        board[x][y] = num; //board[newX][newY];
+        board[x][y].set(num);
     }
-
+
     /**
      * This method checks if a given value is in the row
      * @param y The row / y-coordinate
@@ -41,7 +43,7 @@ public class Board
     {
         for (int i = 0; i < 9; i++)
         {
-            if (board[i][y] == num)
+            if (board[i][y].value() == num)
                 return false;
         }
         return true;
@@ -57,17 +59,17 @@ public class Board
     {
         for (int i = 0; i < 9; i++)
         {
-            if (board[x][i] == num)
+            if (board[x][i].value() == num)
                 return false;
         }
         return true;
     }
-
-    public int [][] returnBoard()
+    
+    public Slot[][] returnBoard()
     {
         return board;
     }
-
+    
     /**
      * This method checks a box to see if a given number is present.
      * @param x The column / x-coordinate
@@ -96,36 +98,59 @@ public class Board
         {
             for (;j< jTop; j++)
             {
-                if (board[i][j] == num)
+                if (board[i][j].value() == num)
                     return false;
             }
         }
 
         return true;
     }
-    
-    public int [] returnRow(int y)
+
+    /*
+     * Sam - sometimes it's easier to follow condensed code, and often many lines are unnecessary.
+     * The first way I condensed this method was by eliminating the "==true" parts of the conditions.
+     * Saying if(a==true) is the same as saying if(a).  Next you said if (condition) return true else
+     * return false.  That can be condensed to simply return (condition), which will return true if
+     * the condition evaluates to true, and false otherwise.  As a general rule if you can condense your
+     * code without making it impossibly complicated to read, you should. 
+     */
+    public boolean checkAll(int x, int y, int num)
     {
-        int[] row = new int[9];
+        return (checkRow(y,num) && checkColumn(x, num) && checkThreeSquare(x,y,num));
+    }
+    
+    public Slot[] returnRow(int y)
+    {
+        Slot[] row = new Slot[9];
         for (int i =0;i<9;i++)
         {
             row[i]=board[i][y];
         }
         return row;
     }
-
-    public int [] returnColumn(int x)
+
+    /*
+     * Sam - when you have a matrix mat[a][b] and you want all of the elements in a single a
+     * strip, you can just use mat[a] and it will return the array you want.  However, if you
+     * want all the elements in a single b strip, you need to iterate through the matrix like
+     * you did in the returnRow method.
+     */
+    public Slot[] returnColumn(int x)
     {
-        int[] row = new int[9];
-        for (int i =0;i<9;i++)
-        {
-            row[i]=board[x][i];
-        }
-        return row;
+        return board[x];
     }
-
+
+    /*
+     * Comment this method - also use internal comments here on the logic of the if
+     * statements so it's easier to follow.  If you ever write a method that is intricate
+     * enough that you think that if you come back in a week you might not remember how it
+     * works or be able to debug it, you should use internal comments.  If you think
+     * you will still understand it because it's written clearly / is obvious,
+     * you don't necessarily need the internal notes, but you should still have JavaDoc.
+     */
     public int getSquareNumber(int x, int y)
     {
+        
         if (x < 2 && y < 2)
             return 0;
         else if(y < 2 && x < 5)
@@ -145,6 +170,13 @@ public class Board
         else
             return 8;
     }
+    
+    /*
+     * Comment this method - not sure what it does.
+     * NOTE: If this is just a method that you use internally in one of your
+     * other methods but I'm not supposed to invoke it outside of this class,
+     * make it "private" instead of public and put it at the bottom of the class.
+     */
     public int getIStarterForSquares(int num)
     {
         
@@ -156,6 +188,13 @@ public class Board
         return 6;
         
     }
+    
+    /*
+     * Comment this method - not sure what it does.
+     * NOTE: If this is just a method that you use internally in one of your
+     * other methods but I'm not supposed to invoke it outside of this class,
+     * make it "private" instead of public and put it at the bottom of the class.
+     */
     public int getJStarterForSquares(int num)
     {
         if (num < 3)
@@ -166,13 +205,13 @@ public class Board
         return 6;
     }
     
-    public int [] returnSquare(int squareNum)
+    public Slot[] returnSquare(int squareNum)
     {
         int i = getIStarterForSquares(squareNum);
         int j = getJStarterForSquares(squareNum);
         int iMax = i +3;
         int jMax = j + 3;
-        int[] square = new int[9];
+        Slot[] square = new Slot[9];
         int count = 0;
         for (; i < iMax; i ++)
         {
@@ -184,30 +223,20 @@ public class Board
         }
         return square;
     }
-    
-    public boolean checkAll(int x, int y, int num)
-    {
-        if((checkRow(y,num)==true) && (checkColumn(x, num)==true)&& (checkThreeSquare(x,y,num)==true))
-        {
-            return true;
-        }
-        else
-            return false;
-    }
-    
-    public int[] getRow(int r) {
+        
+    public Slot[] getRow(int r) {
         return returnRow(r);
     }
     
-    public int[] getColumn(int c) {
+    public Slot[] getColumn(int c) {
         return returnColumn(c);
     }
     
-    public int[] getCol(int c) {
+    public Slot[] getCol(int c) {
         return returnColumn(c);
     }
     
-    public int[] getSquare(int s) {
+    public Slot[] getSquare(int s) {
         return returnSquare(s);
     }
 }
