@@ -3,13 +3,13 @@ public class Board
 {
     private int[][] board = new int[9][9];
     public Board(){}
-    
+
     public Board(int [][] array)
     {
         board = array;
     }
 
-        /**
+    /**
      * This method returns the number in a spot.
      * @param x The column / x-coordinate
      * @param y The row / y-coordinate
@@ -19,8 +19,8 @@ public class Board
     {
         return board[x][y];
     }
-    
-        /**
+
+    /**
      * This method sets the number in a spot.
      * @param x The column / x-coordinate
      * @param y The row / y-coordinate
@@ -30,6 +30,7 @@ public class Board
     {
         board[x][y] = num; //board[newX][newY];
     }
+
     /**
      * This method checks if a given value is in the row
      * @param y The row / y-coordinate
@@ -48,11 +49,11 @@ public class Board
 
     /**
      * This method checks if a given value is in the col
-     * @param x The colom / x-coordinate
+     * @param x The column / x-coordinate
      * @param num is the number it should set to
      * @return if the col is clear of that number
      */
-    public boolean checkColom(int x, int num)
+    public boolean checkColumn(int x, int num)
     {
         for (int i = 0; i < 9; i++)
         {
@@ -61,10 +62,12 @@ public class Board
         }
         return true;
     }
-    public int [][] returnBoard()
+
+    public int [][] returnBoard()
     {
         return board;
     }
+
     /**
      * This method checks a box to see if a given number is present.
      * @param x The column / x-coordinate
@@ -88,7 +91,7 @@ public class Board
         else
             j = 6;
         iTop = i + 3;
-        jTop = j + 3;	
+        jTop = j + 3;   
         for (;i < iTop;i++)
         {
             for (;j< jTop; j++)
@@ -100,14 +103,111 @@ public class Board
 
         return true;
     }
+    
+    public int [] returnRow(int y)
+    {
+        int[] row = new int[9];
+        for (int i =0;i<9;i++)
+        {
+            row[i]=board[i][y];
+        }
+        return row;
+    }
 
+    public int [] returnColumn(int x)
+    {
+        int[] row = new int[9];
+        for (int i =0;i<9;i++)
+        {
+            row[i]=board[x][i];
+        }
+        return row;
+    }
+
+    public int getSquareNumber(int x, int y)
+    {
+        if (x < 2 && y < 2)
+            return 0;
+        else if(y < 2 && x < 5)
+            return 1;
+        else if(y < 2)
+            return 2;
+        else if (y < 5 && x < 2)
+            return 3;
+        else if (y < 5 && x < 5)
+            return 4;
+        else if (y < 5)
+            return 5;
+        else if (x < 2)
+            return 6;
+        else if (x < 5)
+            return 7;
+        else
+            return 8;
+    }
+    public int getIStarterForSquares(int num)
+    {
+        
+        if (num == 0|| num == 3|| num ==6)
+        return 0;
+        if (num == 1|| num == 4|| num ==7)
+        return 3;
+        else
+        return 6;
+        
+    }
+    public int getJStarterForSquares(int num)
+    {
+        if (num < 3)
+        return 0;
+        else if (num < 6)
+        return 3;
+        else 
+        return 6;
+    }
+    
+    public int [] returnSquare(int squareNum)
+    {
+        int i = getIStarterForSquares(squareNum);
+        int j = getJStarterForSquares(squareNum);
+        int iMax = i +3;
+        int jMax = j + 3;
+        int[] square = new int[9];
+        int count = 0;
+        for (; i < iMax; i ++)
+        {
+            for (; j < jMax; j++)
+            {
+                square[count]= board[i][j];
+                count++;
+            }
+        }
+        return square;
+    }
+    
     public boolean checkAll(int x, int y, int num)
     {
-        if((checkRow(y,num)==true) && (checkColom(x, num)==true)&& (checkThreeSquare(x,y,num)==true))
+        if((checkRow(y,num)==true) && (checkColumn(x, num)==true)&& (checkThreeSquare(x,y,num)==true))
         {
             return true;
         }
         else
             return false;
+    }
+    
+    public int[] getRow(int r) {
+        return returnRow(r);
+    }
+    
+    public int[] getColumn(int c) {
+        return returnColumn(c);
+    }
+    
+    public int[] getCol(int c) {
+        return returnColumn(c);
+    }
+    
+    public int[] getSquare(int s) {
+        return returnSquare(s);
     }
 }
