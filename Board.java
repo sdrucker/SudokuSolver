@@ -233,14 +233,18 @@ public class Board
             square[count]= board[i][j];
             count++;
         }
+        j = jMax- 3;
+        i++;
         for (; j < jMax; j++)
         {
-            square[count]= board[i+1][j];
+            square[count]= board[i][j];
             count++;
         }
+        i++;
+        j = jMax- 3;
         for (; j < jMax; j++)
         {
-            square[count]= board[i+2][j];
+            square[count]= board[i][j];
             count++;
         }
         return square;

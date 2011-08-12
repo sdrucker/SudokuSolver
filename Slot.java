@@ -102,8 +102,7 @@ public class Slot {
      * @param i The integer to set as the answer
      */
     public void set(int i) {
-        ArrayList<Integer> answer = new ArrayList<Integer>();
-        answer.add(i);
-        possibilities.retainAll(answer);
+        possibilities.clear();
+        possibilities.add(i);
     }
 }
