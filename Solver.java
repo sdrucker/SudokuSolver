@@ -48,7 +48,7 @@ public class Solver {
                 exit = true;
         } while (!exit);
     }
-    
+
     /**
      * Actually performs the solving
      * >> This method is incomplete, and will be developed as the application progresses.
@@ -75,7 +75,7 @@ public class Solver {
             System.out.println();
         }
     }
-    
+
     /**
      * Checks whether all of the cells that can be evaluated by basic methods have been simplified as much as possible
      */
@@ -88,7 +88,7 @@ public class Solver {
         }
         return true;
     }
-    
+
     /**
      * Simplifies a slot as method, trying to make it "single" if possible
      * @return Whether any removal of the slot occurred
@@ -105,7 +105,7 @@ public class Solver {
             row[i] = Srow[i].value();
             col[i] = Scol[i].value();
         }
-        
+
         for (int i=1;i<10;i++) {
             if (contains(row,i) || contains(col,i) || contains(box,i)) {
                 board.getSlot(c,r).remove(i);
@@ -114,11 +114,27 @@ public class Solver {
         }
         return false;
     }
+    
+    public void setValueIfOnlyOption (int x, int y) {
+        Slot[] box = board.getSquare(board.getSquareNumber(x,y));
+        Slot[] row = board.getRow(y);
+        Slot[] col = board.getCol(x);
+        int mp = missingPossibility(x,y,box);
+        int mp2 = missingPossibility(x,y,row);
+        int mp3 = missingPossibility(x,y,col);
+        if (mp!=-1) {
+            board.setNumberInSpot(x,y,mp);
+        }
+        else if (mp2!=-1)
+            board.setNumberInSpot(x,y,mp2);
+        else if (mp3!=-1)
+            board.setNumberInSpot(x,y,mp3);
+    }
 
     private boolean contains(int[] arr, int key) {
         return Arrays.asList(wrap(arr)).contains((Integer)key);
     }
-    
+
     private Integer[] wrap(int[] arr) {
         Integer[] wrapperArray = new Integer[arr.length];
         for (int i = 0; i < arr.length; i++) {
@@ -126,12 +142,37 @@ public class Solver {
         }
         return wrapperArray;
     }
-    
+
     private int[] unwrap(Integer[] arr) {
         int[] primitiveArray = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
             primitiveArray[i]=(int)arr[i];
         }
         return primitiveArray;
+    }
+    
+    /**
+     * @param x The x coordinate of the point
+     * @param y The y coordinate of the point
+     * @param arr An array of slots
+     * @return The missing possibility if it exists, otherwise return -1.
+     */
+    private int missingPossibility(int x, int y, Slot[] arr) {
+        for (int i = 1; i < 10; i++) {
+            boolean possibilityIsThere  = false;
+            for (int j = 0; j < 9; j++)
+            {
+                if (arr [j] != board.getSlot(x,y))
+                {
+                    if (arr [j].hasPossibility(i))
+                    {
+                        possibilityIsThere = true;
+                    }
+                }
+            }
+            if(!possibilityIsThere)
+                return i;
+        }
+        return -1;
     }
 }
