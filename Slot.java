@@ -89,6 +89,15 @@ public class Slot {
     }
     
     /**
+     * Returns whether or not a given possibility is on the possibility list.
+     * @param pos The possibility number
+     * @return Whether the number isa possibility
+     */
+    public boolean hasPossibility(int pos){
+        return possibilities.contains((Integer)pos);
+    }
+    
+    /**
      * Removes a given integer from the list of remaining possibilities.
      * @param i The integer to remove
      */

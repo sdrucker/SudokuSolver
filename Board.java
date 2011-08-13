@@ -137,7 +137,7 @@ public class Board
         return col;
     }
 
-    public boolean checkRow(int y)
+    public boolean checkIfRowIsComplet(int y)
     {
         Slot [] checkArray = new Slot [9];
         checkArray = returnRow(y);
@@ -155,7 +155,7 @@ public class Board
         return true;
     }
     
-    public boolean checkCol(int x)
+    public boolean checkIfColIsComplete(int x)
     {
         Slot [] checkArray = new Slot [9];
         checkArray = returnColumn(x);
@@ -173,7 +173,7 @@ public class Board
         return true;
     }
     
-    public boolean checkSquare(int squareNum)
+    public boolean checkIfSquareIsComplete(int squareNum)
     {
         Slot [] checkArray = new Slot [9];
         checkArray = returnSquare(squareNum);
