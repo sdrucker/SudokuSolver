@@ -114,6 +114,61 @@ public class Solver {
         }
         return false;
     }
+
+    /**
+     * uses naked pair technice to remove possibilities of spots. 
+     * @this technice is only usefull in eliminating possibilities posibly to one
+     * 
+     */
+    public void nakedPairStrat (Slot [] arr)
+    {
+        //loops through all the spots in the array
+        for (int i = 0; i < 9; i++)
+        {
+            //if one of the spots has two posibilities 
+            if (arr [i].numPossibilities() == 2 )
+            {
+                //record the possibilities
+                int [] temp = arr[i].getPossibilities();
+                int possibilitiy1 = temp [0], possibilitiy2 = temp [1];
+                for (int j = 0; j < 9; j ++)
+                {
+                    //loop through and see if any others have two posibilities
+                    if (j != i && arr [j].numPossibilities() == 2)
+                    {
+                        //record them
+                        int [] temp2 = arr [j].getPossibilities();
+                        int poss1 = temp2[0], poss2 = temp2 [1];
+                        //if there the same than...
+                        if (possibilitiy1 == poss1 && possibilitiy2 ==poss2)
+                        {
+                            //loops through them again
+                            for (int k = 0; k < 9; k++)
+                            {
+                                if (k != i && k != j)
+                                {
+                                    // if that possiblity was used somewhere else it can be removed
+                                    int [] temp3 = arr[k].getPossibilities();
+                                    for (int l =0; l < temp3.length;i++)
+                                    {
+                                        if (temp3[l] == poss1)
+                                        {
+                                            arr[k].remove(poss1);
+                                        }
+                                        if (temp3[l] == poss2)
+                                        {
+                                            arr[k].remove(poss2);
+                                            //look at all those }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     public void setValueIfOnlyOption (int x, int y) {
         Slot[] box = board.getSquare(board.getSquareNumber(x,y));
@@ -150,7 +205,7 @@ public class Solver {
         }
         return primitiveArray;
     }
-    
+
     /**
      * @param x The x coordinate of the point
      * @param y The y coordinate of the point
