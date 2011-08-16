@@ -12,17 +12,9 @@ public class Solver {
      */
     public Solver() {
         board = new Board();
-        //limit();
-        //solve();
-        //printFirstPossible();
-        for (int i = 1; i < 10; i++) {
-            Slot[] arr = board.getSquare(i);
-            System.out.print(i+": ");
-            for (Slot elem : arr) {
-                System.out.print(elem.value()+" ");
-            }
-            System.out.println();
-        }
+        limit();
+        solve();
+        printFirstPossible();
     }
 
     /**

@@ -102,7 +102,7 @@ public class Slot {
      * @param i The integer to remove
      */
     public void remove(int i) {
-        possibilities.remove(i);
+        possibilities.remove(possibilities.indexOf(i));
     }
     
     /**
