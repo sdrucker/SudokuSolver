@@ -47,6 +47,7 @@ public class Slot {
         return numPossibilities() == 1;
     }
     
+    
     /**
      * If the slot has a specific answer, this method returns the answer.  Otherwise,
      * this method returns -1.

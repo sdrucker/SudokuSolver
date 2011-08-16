@@ -19,11 +19,6 @@ package.numDependencies=4
 package.numTargets=4
 package.showExtends=true
 package.showUses=true
-project.charset=MacRoman
-readme.editor.height=700
-readme.editor.width=900
-readme.editor.x=0
-readme.editor.y=22
 target1.editor.height=690
 target1.editor.width=900
 target1.editor.x=380
@@ -48,10 +43,17 @@ target2.type=ClassTarget
 target2.width=80
 target2.x=170
 target2.y=130
+<<<<<<< HEAD
 target3.editor.height=803
 target3.editor.width=1440
 target3.editor.x=0
 target3.editor.y=22
+=======
+target3.editor.height=679
+target3.editor.width=900
+target3.editor.x=380
+target3.editor.y=3
+>>>>>>> a182a4f55915575abba3c4f2eb959257d87618a6
 target3.height=50
 target3.name=Solver
 target3.naviview.expanded=true
